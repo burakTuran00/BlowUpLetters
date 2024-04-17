@@ -357,7 +357,7 @@
 "Assets/Scripts/Spawner.cs"
 "Assets/Scripts/Timer.cs"
 "Assets/Scripts/UIManager.cs"
-"Assets/Scripts/WordListLoader.cs"
+"Assets/Scripts/WordManager.cs"
 -langversion:9.0
 
 /deterministic

@@ -3,6 +3,7 @@ using UnityEditor.Media;
 using UnityEngine;
 public class Pooler : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private int poolSize;
     [SerializeField] private bool expandable;
@@ -10,6 +11,8 @@ public class Pooler : MonoBehaviour
     public static  List<GameObject> usedList;
     public static int counter = 0;  
     private const int LETTER_COUNT = 26;
+    #endregion
+    
     private void OnEnable() 
     {
         freeList = new List<GameObject>();
@@ -50,14 +53,14 @@ public class Pooler : MonoBehaviour
     {
         for(int i = 0; i < prefabs.Length; i++)
         {
-                GameObject g = Instantiate(prefabs[i]);
-                g.SetActive(false);
+            GameObject g = Instantiate(prefabs[i]);
+            g.SetActive(false);
 
-                if(g != null)
-                {
-                    g.transform.parent = transform;
-                    freeList.Add(g);
-                }      
+            if(g != null)
+            {
+                g.transform.parent = transform;
+                freeList.Add(g);
+            }      
         }
     }
 
@@ -81,18 +84,9 @@ public class Pooler : MonoBehaviour
         }
      
     }
+
     public static void StopPooler()
     {
-        /*for(int i = 0; i < freeList.Count; i++)
-        {
-            freeList[i].SetActive(false);
-        }
-
-        for(int i = 0; i < usedList.Count; i++)
-        {
-            usedList[i].SetActive(false);
-        }*/
-        
         #region Performing Loop
         // Less garbage creating 
         foreach(GameObject used in usedList)

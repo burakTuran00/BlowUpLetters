@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 292418734482244541}
   - component: {fileID: 1261405254568963583}
   - component: {fileID: 2815684939654175740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4052696749257980785}
   - component: {fileID: 1947467776595757641}
   - component: {fileID: 778581070817434472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Y_Sub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 5660918443246488212}
   - component: {fileID: 5660918443246488213}
   - component: {fileID: 5660918443246488202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Y
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,5 +243,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.65, z: 1}
+  m_Size: {x: 1.25, y: 1.75, z: 1}
   m_Center: {x: 0, y: 0.25, z: 0}

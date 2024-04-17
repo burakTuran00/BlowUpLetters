@@ -30,65 +30,32 @@ public  class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        /*randomValueToSpawnCount = Random.Range(1, 4);
-       
-        for(int i= 0; i < randomValueToSpawnCount; i++)
+        randomValue = Random.Range(0, Pooler.freeList.Count);   
+
+        if(Pooler.freeList.Contains(Pooler.freeList[randomValue]) && Pooler.freeList.Count > 0)
         {
-            randomValue = Random.Range(0, Pooler.freeList.Count);   
-
-            if(Pooler.freeList.Contains(Pooler.freeList[randomValue]) && Pooler.freeList.Count > 0)
-            {
-                Pooler.freeList[randomValue].SetActive(true);  
-                Pooler.freeList[randomValue].transform.position = GameManager.Instance.SetRandomPosition().position; 
+            Pooler.freeList[randomValue].SetActive(true);  
+            Pooler.freeList[randomValue].transform.position = GameManager.Instance.SetRandomPosition().position; 
                 
-
-                if(lastPosition.x == Pooler.freeList[randomValue].transform.position.x)
-                {
-                    if(Pooler.freeList[randomValue].transform.position.x > 7f)
-                    {
-                        Pooler.freeList[randomValue].transform.position -= new Vector3(2f, 0f, 0f);
-                    }
-                    else 
-                    {
-                        Pooler.freeList[randomValue].transform.position += new Vector3(2f, 0f, 0f);
-                    }
-                }
-
-                lastPosition = Pooler.freeList[randomValue].transform.position;
-                Pooler.usedList.Add(Pooler.freeList[randomValue]);
-                Pooler.freeList.RemoveAt(randomValue);           
-            }   
-        } */  
-
-            randomValue = Random.Range(0, Pooler.freeList.Count);   
-
-            if(Pooler.freeList.Contains(Pooler.freeList[randomValue]) && Pooler.freeList.Count > 0)
+            if(lastPosition.x == Pooler.freeList[randomValue].transform.position.x)
             {
-                Pooler.freeList[randomValue].SetActive(true);  
-                Pooler.freeList[randomValue].transform.position = GameManager.Instance.SetRandomPosition().position; 
-                
-
-                if(lastPosition.x == Pooler.freeList[randomValue].transform.position.x)
+                if(Pooler.freeList[randomValue].transform.position.x > 7f)
                 {
-                    if(Pooler.freeList[randomValue].transform.position.x > 7f)
-                    {
-                        Pooler.freeList[randomValue].transform.position -= new Vector3(2f, 0f, 0f);
-                    }
-                    else 
-                    {
-                        Pooler.freeList[randomValue].transform.position += new Vector3(2f, 0f, 0f);
-                    }
+                    Pooler.freeList[randomValue].transform.position -= new Vector3(2f, 0f, 0f);
                 }
+                else 
+                {
+                    Pooler.freeList[randomValue].transform.position += new Vector3(2f, 0f, 0f);
+                }
+            }
 
-                lastPosition = Pooler.freeList[randomValue].transform.position;
-                Pooler.usedList.Add(Pooler.freeList[randomValue]);
-                Pooler.freeList.RemoveAt(randomValue);           
-            }   
-
-           //delay = Random.Range(minSpawnDelay, maxSpawnDelay);
+            lastPosition = Pooler.freeList[randomValue].transform.position;
+            Pooler.usedList.Add(Pooler.freeList[randomValue]);
+            Pooler.freeList.RemoveAt(randomValue);           
+        }
     }
 
-    IEnumerator ToSpawn()
+    private IEnumerator ToSpawn()
     {
         while (GameManager.Instance.GetRemainingTime() > 0)
         {
@@ -99,8 +66,8 @@ public  class Spawner : MonoBehaviour
 
     public void StopSpawner()
     {
+        StopCoroutine(nameof(ToSpawn));
         this.enabled = false;
-        //StopCoroutine(Spawn());
     }
 
     

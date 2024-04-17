@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1052157281}
   - component: {fileID: 1052157283}
   - component: {fileID: 1052157282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1052157280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.05, y: 0.2, z: 0}
-  m_LocalScale: {x: 1.6, y: 2, z: 1}
+  m_LocalScale: {x: 1.75, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3503954154261374292}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3503954154261374283}
   - component: {fileID: 3503954154261374282}
   - component: {fileID: 3503954154261374293}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.65, z: 1}
+  m_Size: {x: 1.25, y: 1.75, z: 1}
   m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &6800735321336987511
 GameObject:
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 5048824153785504942}
   - component: {fileID: 7289603170473895318}
   - component: {fileID: 8422021239660377271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: A_Sub
   m_TagString: Untagged
   m_Icon: {fileID: 0}

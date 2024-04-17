@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2418063632860367791}
   - component: {fileID: 195459869787732631}
   - component: {fileID: 1404755243343981494}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: M_Sub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 9145998824691530504}
   - component: {fileID: 2857101007454794991}
   - component: {fileID: 1932104557200582194}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 4929990037897087994}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.05, y: 0.2, z: 0}
-  m_LocalScale: {x: 1.5999999, y: 2, z: 1}
+  m_LocalScale: {x: 1.75, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6286811209515809365}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 6286811209515809354}
   - component: {fileID: 6286811209515809355}
   - component: {fileID: 6286811209515809364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,5 +243,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.65, z: 1}
+  m_Size: {x: 1.25, y: 1.75, z: 1}
   m_Center: {x: 0, y: 0.25, z: 0}

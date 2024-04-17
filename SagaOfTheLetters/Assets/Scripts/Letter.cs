@@ -1,5 +1,3 @@
-using System.Threading;
-using UnityEditor.MPE;
 using UnityEngine;
 
 public class Letter : MonoBehaviour
@@ -11,6 +9,7 @@ public class Letter : MonoBehaviour
     {
        
     }
+    
     private void OnDisable() 
     {
         
@@ -30,7 +29,5 @@ public class Letter : MonoBehaviour
     public char getLetterChar()
     {
         return letterChar;
-    }   
-
-    
+    }      
 }

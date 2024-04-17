@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 public class Timer : MonoBehaviour, IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
@@ -10,13 +11,15 @@ public class Timer : MonoBehaviour, IPointerClickHandler
     }
 
     #region Variables
-    [SerializeField] private Text uiTimerText;
+    [SerializeField] private TextMeshProUGUI uiTimerText;
     [SerializeField] private Image uiImage;
     [SerializeField] private Text uiExtraText;
     [SerializeField] private int Duration;
     private int remainingDuration;
-    private bool Pause;
+    public bool Pause {get;set;}
     #endregion
+
+    
     private void Start()
     {
         Being (Duration);

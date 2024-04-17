@@ -6,30 +6,41 @@ public  class GameManager : MonoBehaviour
 {
     public  event Action<char> OnSentenceAddedEvent;
 
-    #region Variables
-    //[SerializeField] private Text scoreText;
+    #region Managers
+    [SerializeField] private WordManager wordManager;
     [SerializeField] private UIManager uIManager;
     [SerializeField] private Blade blade;
     [SerializeField] private Spawner spawner;
     [SerializeField] private Timer timer;
-    [SerializeField] private WordListLoader wordListLoader;
     [SerializeField] private PositionAdjuster positionAdjuster;
+    #endregion
+
+    #region Variables
     private int score = 0;
     public string sentence{ get; set;}
     private int currentSentenceScore;
     private List<string> subList;
     private int totalAmountOfTimeToAdd;
-    private string findenWordText;
+    private string AllFindedWordText;
+    private const int MAX_CHAR_NUMBER = 11;
     #endregion
 
     #region  Singleton
-
     public static GameManager Instance;
     private void Awake() 
     {
-        Instance = this;
+        DontDestroyOnLoad(this);
+        
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
-    
+
     #endregion
     
     private void Start()
@@ -49,46 +60,48 @@ public  class GameManager : MonoBehaviour
         score = 0;
     }
 
-    public void AddSentence(char value) // needs some performing thins
+    public void AddSentence(char value) 
     {  
         sentence += value;
-        blade.BlastEffect();
+        BlastEffect();
 
-        if(BinarySearch.Search(wordListLoader.words, sentence))
+        if(BinarySearch.Search(wordManager.words, sentence))
         {
+            
             subList.Clear();
-            subList = wordListLoader.GetAllSubstrings(sentence);
+            subList = wordManager.GetAllSubstrings(sentence);
 
             foreach(string subword in subList)
             {
-                if (BinarySearch.Search(wordListLoader.words, subword) && !BinarySearch.Search(wordListLoader.findedWords, subword))
+                if (BinarySearch.Search(wordManager.words, subword) && !BinarySearch.Search(wordManager.findedWords, subword))
                 {
                     totalAmountOfTimeToAdd += Mathf.CeilToInt(subword.Length); // todo: find a proper time calculation.
                 }
-                else if(BinarySearch.Search(wordListLoader.findedWords, subword))
+                else if(BinarySearch.Search(wordManager.findedWords, subword))
                 {
                     totalAmountOfTimeToAdd += Mathf.FloorToInt(subword.Length / 2); // todo: find a proper time calculation.
                 }
             }
 
-            wordListLoader.RemoveAtSentence(sentence);
-            wordListLoader.AddFindedWord(sentence);
+            wordManager.RemoveAtSentence(sentence);
+            wordManager.AddFindedWord(sentence);
 
             timer.getMoreTime(totalAmountOfTimeToAdd);
 
             totalAmountOfTimeToAdd = 0;
+
             sentence = "";
+            score++;
         }
 
-        uIManager.SetColorOfWordText((BinarySearch.Search(wordListLoader.findedWords, sentence)) ? Color.yellow : Color.white);
+        uIManager.SetColorOfWordText((BinarySearch.Search(wordManager.findedWords, sentence)) ? Color.yellow : Color.white);
         
-        if(sentence.Length > 10)
+        if(sentence.Length > MAX_CHAR_NUMBER)
         {
             GetRidOfSentence();
         }
 
-        //uIManager.SetWordText(sentence);
-        uIManager.WordText.text = sentence.ToUpper().ToString();
+        uIManager.SetWordText(sentence);
         totalAmountOfTimeToAdd = 0;
     }
 
@@ -104,8 +117,6 @@ public  class GameManager : MonoBehaviour
 
     public void RemoveLastCharacterAtSentence()
     {
-        // This structure doesn't work properly.
-
         if(sentence != null && sentence != "")
         {
             sentence = sentence.Remove(sentence.Length - 1); // remove last char.
@@ -116,6 +127,7 @@ public  class GameManager : MonoBehaviour
             return;
         }
     }
+
     public void GameOver()
     {
         if(timer.getRemainingTime() > 0)
@@ -125,19 +137,25 @@ public  class GameManager : MonoBehaviour
 
         Pooler.StopPooler();
 
-        foreach(string sentence in wordListLoader.findedWords)
+        foreach(string sentence in wordManager.findedWords)
         {
-            findenWordText += sentence + "\n";
+            AllFindedWordText += sentence + "\n";
         }
         
-        uIManager.SetFindedText(findenWordText);
+        AllFindedWordText += "\nTotal Score: " +score.ToString();
+
+        uIManager.SetFindedText(AllFindedWordText);
+
+        StopAllCoroutines();
         Time.timeScale = 0f;
+        blade.enabled = false;
     }
 
     public void BlastEffect()
     {
-
+        blade.BlastEffect();
     }
+
     public Transform SetRandomPosition()
     {
         return positionAdjuster.RandomPosition();

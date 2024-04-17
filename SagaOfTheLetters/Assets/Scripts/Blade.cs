@@ -10,9 +10,6 @@ public class Blade : MonoBehaviour
     [SerializeField] private LayerMask sliceLayerMask;
     public bool slicing {get; private set;}
     public Vector3 direction { get; private set; }
-    [SerializeField] private float slicedForce = 5.0f;
-    [SerializeField] private float minSliceVelocity = 0.01f;
-    [SerializeField] private TrailRenderer bladeTrail;
     #endregion 
    
     private void OnEnable()
@@ -51,29 +48,12 @@ public class Blade : MonoBehaviour
         slicing = true;
 
         bladeCollider.enabled = true;
-        bladeTrail.enabled = true;
-        bladeTrail.Clear();
     }
 
     private void StopSlicing()
     {
         slicing = false;
         bladeCollider.enabled = false;
-        bladeTrail.enabled = false;
-        //gameManager.GetRidOfSentence();
-    }
-
-    private void ContinueSlicing()
-    {
-        Vector3 newPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        newPosition.z = 0.0f;
-
-        direction = newPosition - transform.position;
-
-        float velocity = direction.magnitude / Time.deltaTime;
-        bladeCollider.enabled = velocity > minSliceVelocity;
-
-        transform.position = newPosition;
     }
 
     private void ContinueSlicingMain()
@@ -88,20 +68,9 @@ public class Blade : MonoBehaviour
 
             direction = newPosition - transform.position;
             transform.position = newPosition;
-
-            /*Letter letter = hit.transform.GetComponent<Letter>();
-
-            if (letter != null)
-            {
-                gameManager.AddSentence(letter.getLetterChar());
-            }*/
-
-            // Perform slicing action here if needed
-            //Letter letter = hit.transform.GetComponent<Letter>();
-            //gameManager.AddSentence(letter.getLetterChar());
         }
     }
-
+    
     public void BlastEffect()
     {
         blastEffect.Play();
