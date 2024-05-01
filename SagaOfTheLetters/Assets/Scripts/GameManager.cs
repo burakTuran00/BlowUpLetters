@@ -19,13 +19,13 @@ public  class GameManager : MonoBehaviour
     private int score = 0;
     public string sentence{ get; set;}
     private int currentSentenceScore;
-    private List<string> subList;
     private int totalAmountOfTimeToAdd;
     private string AllFindedWordText;
     private const int MAX_CHAR_NUMBER = 11;
     #endregion
 
     #region  Singleton
+    
     public static GameManager Instance;
     private void Awake() 
     {
@@ -50,8 +50,6 @@ public  class GameManager : MonoBehaviour
     
     public void StartGame()
     {
-        subList = new List<string>();
-
         Time.timeScale = 1f;
 
         blade.enabled = true;
@@ -67,11 +65,9 @@ public  class GameManager : MonoBehaviour
 
         if(BinarySearch.Search(wordManager.words, sentence))
         {
-            
-            subList.Clear();
-            subList = wordManager.GetAllSubstrings(sentence);
+            wordManager.GetAllSubstrings(sentence);
 
-            foreach(string subword in subList)
+            foreach(string subword in wordManager.subWords)
             {
                 if (BinarySearch.Search(wordManager.words, subword) && !BinarySearch.Search(wordManager.findedWords, subword))
                 {
@@ -87,9 +83,6 @@ public  class GameManager : MonoBehaviour
             wordManager.AddFindedWord(sentence);
 
             timer.getMoreTime(totalAmountOfTimeToAdd);
-
-            totalAmountOfTimeToAdd = 0;
-
             sentence = "";
             score++;
         }
@@ -130,20 +123,13 @@ public  class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if(timer.getRemainingTime() > 0)
+        if(GetRemainingTime() > 0)
         {
             return;
         }
 
         Pooler.StopPooler();
-
-        foreach(string sentence in wordManager.findedWords)
-        {
-            AllFindedWordText += sentence + "\n";
-        }
-        
-        AllFindedWordText += "\nTotal Score: " +score.ToString();
-
+        wordManager.ShowAllFindedWordToText(ref AllFindedWordText, score);
         uIManager.SetFindedText(AllFindedWordText);
 
         StopAllCoroutines();

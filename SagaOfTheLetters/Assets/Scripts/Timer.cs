@@ -18,7 +18,6 @@ public class Timer : MonoBehaviour, IPointerClickHandler
     private int remainingDuration;
     public bool Pause {get;set;}
     #endregion
-
     
     private void Start()
     {
@@ -39,6 +38,7 @@ public class Timer : MonoBehaviour, IPointerClickHandler
             {
                 uiTimerText.text = $"{remainingDuration/ 60:00}:{remainingDuration % 60:00}";
                 uiImage.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
+                uiTimerText.color = (remainingDuration <= 10) ? Color.red : Color.white;
                 remainingDuration--;
                 yield return new WaitForSeconds(1f);
             }
@@ -62,7 +62,6 @@ public class Timer : MonoBehaviour, IPointerClickHandler
     {
         remainingDuration += second;
 
-        // seperate 
         uiExtraText.gameObject.SetActive(true);
         uiExtraText.text = "+" + second.ToString("00");
     }

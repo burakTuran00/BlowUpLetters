@@ -69,6 +69,4 @@ public  class Spawner : MonoBehaviour
         StopCoroutine(nameof(ToSpawn));
         this.enabled = false;
     }
-
-    
 }

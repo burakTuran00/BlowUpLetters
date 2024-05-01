@@ -45,32 +45,10 @@ public class WordManager : MonoBehaviour
 
     public int GetPositionOfSentence(string target)
     {
-        int left = 0;
-        int right = words.Count - 1;
-
-        while (left <= right)
-        {
-            int mid = left + (right - left) / 2;
-            int comparison = string.Compare(words[mid], target);
-
-            if (comparison < 0)
-            {
-                left = mid + 1;
-            }
-            else if (comparison > 0)
-            {
-                right = mid - 1;
-            }
-            else
-            {
-                return mid;
-            }
-        }
-
-        return -1;
+        return BinarySearch.SearchPositionOfSentence(words, target);
     }
 
-    public List<string> GetAllSubstrings(string str)
+    public void GetAllSubstrings(string str)
     {
         subWords.Clear();
 
@@ -81,8 +59,6 @@ public class WordManager : MonoBehaviour
                 subWords.Add(str.Substring(i, j - i));
             }
         }
-
-        return subWords;
     }
 
     public void AddFindedWord(string sentence)
@@ -94,5 +70,15 @@ public class WordManager : MonoBehaviour
     public void RemoveAtSentence(string sentence)
     {
         words.RemoveAt(GetPositionOfSentence(sentence));
+    }
+
+    public void ShowAllFindedWordToText(ref string AllFindedWordTex, int score)
+    {
+        foreach(string word in findedWords)
+        {
+            AllFindedWordTex += word + "\n";
+        }
+
+        AllFindedWordTex += "\nTotal Score:" + score.ToString();
     }
 }

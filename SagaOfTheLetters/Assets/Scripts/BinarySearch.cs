@@ -28,4 +28,31 @@ public static class BinarySearch
 
         return false;
     }
+
+    public static int SearchPositionOfSentence(List<string> list, string target)
+    {
+        int left = 0;
+        int right = list.Count - 1;
+
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+            int comparison = string.Compare(list[mid], target);
+
+            if (comparison < 0)
+            {
+                left = mid + 1;
+            }
+            else if (comparison > 0)
+            {
+                right = mid - 1;
+            }
+            else
+            {
+                return mid;
+            }
+        }
+
+        return -1;
+    }
 }
