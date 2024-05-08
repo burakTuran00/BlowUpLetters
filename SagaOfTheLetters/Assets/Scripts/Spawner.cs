@@ -14,7 +14,7 @@ public  class Spawner : MonoBehaviour
 
     private Vector3 lastPosition;
 
-    private void Start()
+    public void StartSpawner()
     {
         //delay = Random.Range(minSpawnDelay,maxSpawnDelay);
         delay = (minSpawnDelay+maxSpawnDelay)/2;

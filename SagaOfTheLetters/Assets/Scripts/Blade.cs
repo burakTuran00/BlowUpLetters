@@ -10,6 +10,7 @@ public class Blade : MonoBehaviour
     [SerializeField] private LayerMask sliceLayerMask;
     public bool slicing {get; private set;}
     public Vector3 direction { get; private set; }
+    private bool firstTouch = true;
     #endregion 
    
     private void OnEnable()
@@ -26,6 +27,13 @@ public class Blade : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if(firstTouch)
+            {
+                GameManager.Instance.StartGame();
+                GameManager.Instance.SetConditionOfStartGameText(false);
+                firstTouch = false;
+            }
+
             StartSlicing();
         }
         else if (Input.GetMouseButtonUp(0))

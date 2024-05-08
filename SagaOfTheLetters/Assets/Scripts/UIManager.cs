@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text wordText;
     [SerializeField] private TextMeshProUGUI findedWordsText;
     [SerializeField] private Image findenWordImage;    
+    [SerializeField] private TextMeshProUGUI toStartTheGameText;
+    [SerializeField] private TextMeshProUGUI countDownText;
 
     public void SetWordText(string sentence)
     {
@@ -19,5 +21,10 @@ public class UIManager : MonoBehaviour
     {
         findenWordImage.gameObject.SetActive(true);
         findedWordsText.text = (sentence != null || sentence != "") ? sentence.ToUpper().ToString() : "Not FOUND ANY WORD!";
+    }
+    public void SetFirstStartCondition(bool condition)
+    {
+        toStartTheGameText.gameObject.SetActive(condition);
+        countDownText.gameObject.SetActive(!condition);
     }
 }

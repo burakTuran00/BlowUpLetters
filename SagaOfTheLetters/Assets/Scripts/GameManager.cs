@@ -43,17 +43,15 @@ public  class GameManager : MonoBehaviour
 
     #endregion
     
-    private void Start()
-    {
-        StartGame();
-    }
-    
     public void StartGame()
     {
         Time.timeScale = 1f;
 
         blade.enabled = true;
         spawner.enabled = true;
+
+        timer.StartTimer();
+        spawner.StartSpawner();
 
         score = 0;
     }
@@ -71,18 +69,18 @@ public  class GameManager : MonoBehaviour
             {
                 if (BinarySearch.Search(wordManager.words, subword) && !BinarySearch.Search(wordManager.findedWords, subword))
                 {
-                    totalAmountOfTimeToAdd += Mathf.CeilToInt(subword.Length); // todo: find a proper time calculation.
+                    totalAmountOfTimeToAdd += Mathf.RoundToInt(subword.Length); // todo: find a proper time calculation.
                 }
                 else if(BinarySearch.Search(wordManager.findedWords, subword))
                 {
-                    totalAmountOfTimeToAdd += Mathf.FloorToInt(subword.Length / 2); // todo: find a proper time calculation.
+                    totalAmountOfTimeToAdd += Mathf.RoundToInt(subword.Length / 2); // todo: find a proper time calculation.
                 }
             }
 
             wordManager.RemoveAtSentence(sentence);
             wordManager.AddFindedWord(sentence);
 
-            timer.getMoreTime(totalAmountOfTimeToAdd);
+            timer.getMoreTime(Mathf.RoundToInt(totalAmountOfTimeToAdd));
             sentence = "";
             score++;
         }
@@ -151,4 +149,10 @@ public  class GameManager : MonoBehaviour
     {
         return timer.getRemainingTime();
     }
+
+    public void SetConditionOfStartGameText(bool condition)
+    {
+        uIManager.SetFirstStartCondition(condition);
+    }
+
 }

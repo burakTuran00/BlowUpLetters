@@ -19,12 +19,12 @@ public class Timer : MonoBehaviour, IPointerClickHandler
     public bool Pause {get;set;}
     #endregion
     
-    private void Start()
+    public void StartTimer()
     {
         Being (Duration);
     }
 
-    private void Being(int Second)
+    public void Being(int Second)
     {
         remainingDuration = Second;
         StartCoroutine(UpdateTimer());
@@ -38,7 +38,6 @@ public class Timer : MonoBehaviour, IPointerClickHandler
             {
                 uiTimerText.text = $"{remainingDuration/ 60:00}:{remainingDuration % 60:00}";
                 uiImage.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
-                uiTimerText.color = (remainingDuration <= 10) ? Color.red : Color.white;
                 remainingDuration--;
                 yield return new WaitForSeconds(1f);
             }
