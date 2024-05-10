@@ -50,6 +50,12 @@ public  class GameManager : MonoBehaviour
         blade.enabled = true;
         spawner.enabled = true;
 
+        sentence = "";
+        uIManager.SetWordText(sentence);
+
+        timer.Pause = false;
+        spawner.Pause = false;
+
         timer.StartTimer();
         spawner.StartSpawner();
 
@@ -80,7 +86,7 @@ public  class GameManager : MonoBehaviour
             wordManager.RemoveAtSentence(sentence);
             wordManager.AddFindedWord(sentence);
 
-            timer.getMoreTime(Mathf.RoundToInt(totalAmountOfTimeToAdd));
+            timer.getMoreTime(Mathf.RoundToInt(totalAmountOfTimeToAdd * 2));
             sentence = "";
             score++;
         }
@@ -155,4 +161,9 @@ public  class GameManager : MonoBehaviour
         uIManager.SetFirstStartCondition(condition);
     }
 
+    public void PauseGame(bool condition)
+    {
+        timer.Pause = condition;
+        spawner.Pause = condition;
+    }
 }

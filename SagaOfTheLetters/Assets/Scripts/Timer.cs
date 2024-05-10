@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TextMeshProUGUI uiTimerText;
     [SerializeField] private Image uiImage;
     [SerializeField] private Text uiExtraText;
+    [SerializeField] private Animator uiExtraAnimator;
     [SerializeField] private int Duration;
     private int remainingDuration;
     public bool Pause {get;set;}
@@ -61,7 +62,7 @@ public class Timer : MonoBehaviour, IPointerClickHandler
     {
         remainingDuration += second;
 
-        uiExtraText.gameObject.SetActive(true);
         uiExtraText.text = "+" + second.ToString("00");
+        uiExtraAnimator.SetTrigger("getExtra");
     }
 }
