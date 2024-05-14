@@ -40,4 +40,9 @@ public class StartMenu : MonoBehaviour
     {
         SceneTransactionManager.LoadScene("SettingsMenu");
     }
+
+    public void SkorBoardButton()
+    {
+        SceneTransactionManager.LoadScene("SkorMenu");
+    }
 }

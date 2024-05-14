@@ -27,4 +27,8 @@ public class PauseMenu : MonoBehaviour
         GameManager.Instance.PauseGame(condition);
         pausedButton.interactable = !condition;
     }
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
 }

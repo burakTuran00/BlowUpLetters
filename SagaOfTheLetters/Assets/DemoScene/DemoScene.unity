@@ -810,7 +810,7 @@ MonoBehaviour:
   uiImage: {fileID: 624322530}
   uiExtraText: {fileID: 1620972383}
   uiExtraAnimator: {fileID: 1620972386}
-  Duration: 60
+  Duration: 30
 --- !u!114 &356152072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6029,6 +6029,10 @@ PrefabInstance:
     - target: {fileID: 4784864341979194115, guid: b72d9b92c47570749941bd7b84efee9e, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784864341979194115, guid: b72d9b92c47570749941bd7b84efee9e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4784864341979194115, guid: b72d9b92c47570749941bd7b84efee9e, type: 3}
       propertyPath: m_LocalPosition.x

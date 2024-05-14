@@ -137,7 +137,7 @@ public  class GameManager : MonoBehaviour
         uIManager.SetFindedText(AllFindedWordText);
 
         StopAllCoroutines();
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
         blade.enabled = false;
     }
 

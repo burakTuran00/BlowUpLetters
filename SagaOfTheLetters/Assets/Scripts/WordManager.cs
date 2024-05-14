@@ -82,3 +82,5 @@ public class WordManager : MonoBehaviour
         AllFindedWordTex += "\nTotal Score:" + score.ToString();
     }
 }
+
+// yeni şeyler ekleme lazım böylece, oyun daha falza gelişmiş olacaktır.
